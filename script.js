@@ -549,6 +549,203 @@ const characterImages = {
     OL: 'images/OL.jpg'
 };
 
+// ========== 奖惩规则系统 ==========
+
+// 移动设备检测与性能优化
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+const isLowEndDevice = window.devicePixelRatio && window.devicePixelRatio < 2;
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// 获取 iOS 主版本号
+function getIOSVersion() {
+    if (!isIOS) return 0;
+    const match = navigator.userAgent.match(/OS (\d+)/);
+    return match ? parseInt(match[1]) : 0;
+}
+
+// 根据设备性能调整动画
+function optimizeAnimationForDevice() {
+    if (isMobile || prefersReducedMotion) {
+        document.body.classList.add('mobile-optimized');
+        
+        // iOS 特定优化
+        if (isIOS) {
+            document.body.classList.add('ios-optimized');
+            
+            // iOS 10 以下降级处理
+            const iosVersion = getIOSVersion();
+            if (iosVersion > 0 && iosVersion < 10) {
+                document.body.classList.add('ios-legacy');
+            }
+        }
+        
+        // 降低某些动画的复杂度
+        if (isLowEndDevice || prefersReducedMotion) {
+            document.body.classList.add('reduced-motion');
+        }
+    }
+}
+
+// 初始化设备优化
+optimizeAnimationForDevice();
+
+// 惩罚规则库（按严重程度分级）
+const punishmentRules = {
+    // 轻度惩罚（得分 1-5 分）
+    light: [
+        { name: '闪烁警告', class: 'impact-vibrate', duration: 2000 },
+        { name: '模糊眩晕', class: 'impact-mist', duration: 2500 },
+        { name: '温柔拥抱', class: 'impact-warm', duration: 3000 }
+    ],
+    // 中度惩罚（得分 6-15 分）
+    medium: [
+        { name: '系统崩溃', class: 'impact-glitch', duration: 3000 },
+        { name: '文字狱', class: 'impact-ink', duration: 3500 },
+        { name: '花海淹没', class: 'impact-bloom', duration: 4000 },
+        { name: '地震模式', class: 'impact-vibrate', duration: 2500 }
+    ],
+    // 重度惩罚（得分 16-30 分）
+    heavy: [
+        { name: '鲜血献祭', class: 'impact-blood', duration: 4000 },
+        { name: '绝对零度', class: 'impact-freeze', duration: 4500 },
+        { name: '王权制裁', class: 'impact-royal', duration: 4000 },
+        { name: '幻境迷宫', class: 'impact-mist', duration: 5000 }
+    ],
+    // 极刑惩罚（得分 31+ 分或特定角色）
+    extreme: [
+        { name: '天罚·神雷审判', class: 'impact-electro', duration: 5000 },
+        { name: '血色炼狱', class: 'impact-blood', duration: 6000 },
+        { name: '系统崩溃·改', class: 'impact-glitch', duration: 5000 }
+    ]
+};
+
+// 奖励规则库（根据角色类型和分数触发）
+const rewardRules = {
+    // 通用奖励动画
+    common: {
+        sparkle: { name: '星光闪耀', class: 'reward-sparkle', text: '✨ 闪耀登场 ✨' },
+        warmth: { name: '温暖光芒', class: 'reward-warmth', text: '💫 温暖人心 💫' },
+        blossom: { name: '花朵绽放', class: 'reward-blossom', text: '🌸 花开富贵 🌸' }
+    },
+    // 角色专属奖励
+    archetype: {
+        // 可爱系
+        loli: { name: '萝莉守护', class: 'reward-candy', text: '🍬 萝莉的甜蜜奖励 🍬' },
+        tianmei: { name: '甜美笑容', class: 'reward-candy', text: '🍰 甜美的你值得奖励 🍰' },
+        shaonv: { name: '少女之心', class: 'reward-peach', text: '🍑 少女的悸动 🍑' },
+        // 高冷系
+        bingshan: { name: '冰山融化', class: 'reward-melt', text: '💧 冰山为你融化 💧' },
+        sanwu: { name: '三无心动', class: 'reward-silent', text: '💓 无声的告白 💓' },
+        nvwang: { name: '女王认可', class: 'reward-coronation', text: '👑 女王的加冕 👑' },
+        // 魅力系
+        meihuo: { name: '魅惑众生', class: 'reward-rose', text: '🌹 魅力的证明 🌹' },
+        renqi: { name: '人妻温柔', class: 'reward-hearth', text: '🏠 家的温暖 🏠' },
+        yujie: { name: '御姐风范', class: 'reward-wine', text: '🍷 成熟的韵味 🍷' },
+        // 特殊系
+        jixieji: { name: '机械觉醒', class: 'reward-activate', text: '⚙️ 机械之心启动 ⚙️' },
+        monv: { name: '魔女祝福', class: 'reward-pact', text: '🔮 魔女的契约 🔮' },
+        xianv: { name: '仙女降临', class: 'reward-sacred', text: '🌙 月之光华 🌙' }
+    },
+    // 分数段奖励
+    scoreBased: {
+        bronze: { min: 0, max: 10, class: 'reward-star', text: '⭐ 新星奖 ⭐' },
+        silver: { min: 11, max: 20, class: 'reward-pearl', text: '🔮 珍珠奖 🔮' },
+        gold: { min: 21, max: 30, class: 'reward-royal', text: '🏆 黄金奖 🏆' },
+        platinum: { min: 31, max: 50, class: 'reward-victory', text: '👑 白金大奖 👑' },
+        diamond: { min: 51, max: 999, class: 'reward-inferno', text: '💎 钻石传说奖 💎' }
+    }
+};
+
+// 获取惩罚等级
+function getPunishmentLevel(score, archetype) {
+    // 特定角色直接进入极刑
+    if (archetype === 'loli' && score >= 10) return 'extreme';
+    if (archetype === 'bingjiao' && score >= 15) return 'extreme';
+    if (archetype === 'nvwang' && score >= 20) return 'extreme';
+    
+    if (score >= 31) return 'extreme';
+    if (score >= 16) return 'heavy';
+    if (score >= 6) return 'medium';
+    return 'light';
+}
+
+// 应用惩罚效果
+function applyPunishment(archetype, score) {
+    const level = getPunishmentLevel(score, archetype);
+    const rules = punishmentRules[level];
+    const rule = rules[Math.floor(Math.random() * rules.length)];
+    
+    const card = document.getElementById('main-result-card');
+    card.className = `card result-card ${rule.class}`;
+    
+    // 显示惩罚信息
+    showImpactMessage(`⚡ 惩罚：${rule.name} ⚡`, 'punishment');
+    
+    // 设置定时器移除效果
+    setTimeout(() => {
+        card.className = 'card result-card';
+    }, rule.duration);
+}
+
+// 应用奖励效果
+function applyReward(archetype, score) {
+    const card = document.getElementById('main-result-card');
+    
+    // 1. 角色专属奖励
+    if (rewardRules.archetype[archetype]) {
+        const rule = rewardRules.archetype[archetype];
+        card.classList.add(rule.class);
+        showImpactMessage(rule.text, 'reward');
+        setTimeout(() => card.classList.remove(rule.class), 3000);
+        return;
+    }
+    
+    // 2. 分数段奖励
+    for (const [key, rule] of Object.entries(rewardRules.scoreBased)) {
+        if (score >= rule.min && score <= rule.max) {
+            card.classList.add(rule.class);
+            showImpactMessage(rule.text, 'reward');
+            setTimeout(() => card.classList.remove(rule.class), 3000);
+            return;
+        }
+    }
+    
+    // 3. 通用奖励
+    const commonRewards = Object.values(rewardRules.common);
+    const rule = commonRewards[Math.floor(Math.random() * commonRewards.length)];
+    card.classList.add(rule.class);
+    showImpactMessage(rule.text, 'reward');
+    setTimeout(() => card.classList.remove(rule.class), 3000);
+}
+
+// 显示奖惩信息
+function showImpactMessage(text, type) {
+    let overlay = document.getElementById('impact-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'impact-overlay';
+        overlay.className = 'reward-overlay';
+        overlay.innerHTML = '<div class="reward-text"></div>';
+        document.body.appendChild(overlay);
+    }
+    
+    const textEl = overlay.querySelector('.reward-text');
+    textEl.textContent = text;
+    
+    // 根据类型设置颜色
+    if (type === 'punishment') {
+        textEl.style.color = '#ff4444';
+        textEl.style.textShadow = '0 0 20px #ff0000';
+    } else {
+        textEl.style.color = '#ffd700';
+        textEl.style.textShadow = '0 0 20px #ffec8b';
+    }
+    
+    overlay.classList.add('active');
+    setTimeout(() => overlay.classList.remove('active'), 2500);
+}
+
 // 加载角色图片
 async function loadImageByArchetype(winnerId) {
     const img = document.getElementById('result-image');
@@ -579,25 +776,36 @@ async function loadImageByArchetype(winnerId) {
     img.src = imageUrl;
 }
 
-// 应用动画效果
-function applyImpactByArchetype(winnerId) {
+// 应用动画效果（集成奖惩系统）
+function applyImpactByArchetype(winnerId, score = 0) {
     const card = document.getElementById('main-result-card');
     card.className = 'card result-card';
-    const impactMap = {
-        loli: 'impact-electro',
-        bingjiao: 'impact-blood', fengpi: 'impact-blood', meimo: 'impact-blood', meihuo: 'impact-blood',
-        bingshan: 'impact-freeze', sanwu: 'impact-freeze', jinyu: 'impact-freeze', jixieji: 'impact-freeze',
-        nvwang: 'impact-royal', daxiaojie: 'impact-royal', qianjin: 'impact-royal', yujie: 'impact-royal',
-        weiniang: 'impact-glitch', nanzhuangdalao: 'impact-glitch', kujie: 'impact-glitch',
-        senxi: 'impact-bloom', shaonv: 'impact-bloom', tianmei: 'impact-bloom', gufeng: 'impact-bloom',
-        wenyixi: 'impact-ink', dushe: 'impact-ink', xuejie: 'impact-ink', fuhei: 'impact-ink',
-        yundongxi: 'impact-vibrate', yuanqiniang: 'impact-vibrate', lamei: 'impact-vibrate',
-        renqi: 'impact-warm', linjianvh: 'impact-warm', xuemei: 'impact-warm', chunyu: 'impact-warm', shaofu: 'impact-warm',
-        monv: 'impact-mist', xianv: 'impact-mist', shouerniang: 'impact-mist',
-        ruanmei: 'impact-warm', aojiao: 'impact-glitch', tiandandai: 'impact-bloom', OL: 'impact-royal'
-    };
-    const impactClass = impactMap[winnerId] || 'impact-glitch';
-    card.classList.add(impactClass);
+    
+    // 根据分数决定奖惩（负分惩罚，正分奖励）
+    if (score < 0) {
+        // 惩罚模式
+        applyPunishment(winnerId, Math.abs(score));
+    } else if (score > 0) {
+        // 奖励模式
+        applyReward(winnerId, score);
+    } else {
+        // 默认使用原有映射
+        const impactMap = {
+            loli: 'impact-electro',
+            bingjiao: 'impact-blood', fengpi: 'impact-blood', meimo: 'impact-blood', meihuo: 'impact-blood',
+            bingshan: 'impact-freeze', sanwu: 'impact-freeze', jinyu: 'impact-freeze', jixieji: 'impact-freeze',
+            nvwang: 'impact-royal', daxiaojie: 'impact-royal', qianjin: 'impact-royal', yujie: 'impact-royal',
+            weiniang: 'impact-glitch', nanzhuangdalao: 'impact-glitch', kujie: 'impact-glitch',
+            senxi: 'impact-bloom', shaonv: 'impact-bloom', tianmei: 'impact-bloom', gufeng: 'impact-bloom',
+            wenyixi: 'impact-ink', dushe: 'impact-ink', xuejie: 'impact-ink', fuhei: 'impact-ink',
+            yundongxi: 'impact-vibrate', yuanqiniang: 'impact-vibrate', lamei: 'impact-vibrate',
+            renqi: 'impact-warm', linjianvh: 'impact-warm', xuemei: 'impact-warm', chunyu: 'impact-warm', shaofu: 'impact-warm',
+            monv: 'impact-mist', xianv: 'impact-mist', shouerniang: 'impact-mist',
+            ruanmei: 'impact-warm', aojiao: 'impact-glitch', tiandandai: 'impact-bloom', OL: 'impact-royal'
+        };
+        const impactClass = impactMap[winnerId] || 'impact-glitch';
+        card.classList.add(impactClass);
+    }
 }
 
 // 重新开始

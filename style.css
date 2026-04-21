@@ -375,6 +375,202 @@ body.white-theme {
     }
 }
 
+/* === Xiaomi Mi 6 / Standard Mobile (360px - 414px) === */
+@media (min-width: 360px) and (max-width: 414px) {
+    #app {
+        padding: 12px;
+    }
+    
+    .card {
+        padding: 22px 18px;
+    }
+    
+    .title {
+        font-size: 1.4rem;
+    }
+    
+    .subtitle {
+        font-size: 0.72rem;
+    }
+    
+    #question-text {
+        font-size: 0.98rem;
+        line-height: 1.6;
+    }
+    
+    .option-btn {
+        padding: 13px 15px;
+        font-size: 0.83rem;
+        line-height: 1.5;
+    }
+    
+    .result-name {
+        font-size: 1.3rem;
+    }
+    
+    .result-desc {
+        font-size: 0.83rem;
+    }
+    
+    .result-visual {
+        height: 170px;
+    }
+    
+    .result-content {
+        padding: 0 5px;
+    }
+    
+    /* 优化动画性能 */
+    .impact-electro,
+    .impact-blood,
+    .impact-freeze,
+    .impact-royal,
+    .impact-glitch,
+    .impact-bloom,
+    .impact-ink,
+    .impact-vibrate,
+    .impact-warm,
+    .impact-mist,
+    .impact-abyss,
+    .impact-time,
+    .impact-gravity,
+    .impact-soul,
+    .impact-void {
+        will-change: transform, opacity, box-shadow;
+    }
+    
+    /* 减少复杂动画的计算量 */
+    .reward-sparkle::before,
+    .reward-blossom::before,
+    .reward-candy::before,
+    .reward-candy::after,
+    .reward-pact::before,
+    .reward-pact::after,
+    .reward-sacred::before,
+    .reward-sacred::after {
+        font-size: 35px;
+    }
+}
+
+/* === iPhone 7/8 / Standard iOS (375px - 414px) === */
+@media (min-width: 375px) and (max-width: 414px) {
+    /* iOS 优化字体渲染 */
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* 防止 iOS 自动调整字体大小 */
+    html {
+        -webkit-text-size-adjust: 100%;
+    }
+    
+    /* iOS 安全区域适配 */
+    #app {
+        padding: max(12px, env(safe-area-inset-top)) 
+                 max(12px, env(safe-area-inset-right)) 
+                 max(12px, env(safe-area-inset-bottom)) 
+                 max(12px, env(safe-area-inset-left));
+    }
+    
+    /* 结果页面适配 */
+    .result-visual {
+        height: 180px;
+        margin: 15px 0;
+    }
+    
+    .result-name {
+        font-size: 1.35rem;
+        font-weight: 600;
+    }
+    
+    .result-desc {
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+    
+    /* 按钮适配 iOS 触摸 */
+    .option-btn,
+    .btn-primary,
+    .btn-secondary {
+        -webkit-tap-highlight-color: transparent;
+        cursor: pointer;
+    }
+    
+    /* 动画性能优化 */
+    .card,
+    .impact-electro,
+    .impact-blood,
+    .impact-freeze,
+    .impact-royal,
+    .impact-glitch,
+    .impact-bloom,
+    .impact-ink,
+    .impact-vibrate,
+    .impact-warm,
+    .impact-mist,
+    .impact-abyss,
+    .impact-time,
+    .impact-gravity,
+    .impact-soul,
+    .impact-void,
+    .reward-sparkle,
+    .reward-warmth,
+    .reward-blossom,
+    .reward-candy,
+    .reward-peach,
+    .reward-melt,
+    .reward-silent,
+    .reward-coronation,
+    .reward-pact,
+    .reward-sacred {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+}
+
+/* === iPhone Plus / Max (414px+) === */
+@media (min-width: 414px) and (max-width: 428px) {
+    #app {
+        padding: 15px;
+    }
+    
+    .card {
+        padding: 25px 20px;
+    }
+    
+    .title {
+        font-size: 1.5rem;
+    }
+    
+    .subtitle {
+        font-size: 0.75rem;
+    }
+    
+    #question-text {
+        font-size: 1rem;
+    }
+    
+    .option-btn {
+        padding: 14px 16px;
+        font-size: 0.88rem;
+    }
+    
+    .result-name {
+        font-size: 1.4rem;
+    }
+    
+    .result-desc {
+        font-size: 0.88rem;
+    }
+    
+    .result-visual {
+        height: 200px;
+    }
+}
+
 /* === Landscape Mode === */
 @media (max-height: 500px) and (orientation: landscape) {
     body.white-theme {
@@ -404,6 +600,60 @@ body.white-theme {
     }
 }
 
+/* === iOS Landscape Mode === */
+@media (orientation: landscape) and (max-width: 736px) {
+    /* iPhone 横屏优化 */
+    #app {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+    
+    .card {
+        max-width: 90vw;
+    }
+    
+    .result-visual {
+        height: 150px;
+    }
+    
+    /* 横屏时减小字体 */
+    .title {
+        font-size: 1.3rem;
+    }
+    
+    .result-name {
+        font-size: 1.2rem;
+    }
+    
+    .result-desc {
+        font-size: 0.8rem;
+    }
+}
+
+/* === iPhone Notch / Safe Area Support === */
+@supports (padding: max(0px)) {
+    body {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+    
+    #app {
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
+    }
+    
+    /* 刘海屏横屏适配 */
+    @media (orientation: landscape) {
+        #app {
+            padding-top: max(12px, env(safe-area-inset-top));
+            padding-bottom: max(12px, env(safe-area-inset-bottom));
+        }
+    }
+}
+
 /* === Touch Optimization === */
 @media (hover: none) and (pointer: coarse) {
     .option-btn {
@@ -413,6 +663,178 @@ body.white-theme {
     
     .btn-primary,
     .btn-secondary {
+        min-height: 50px;
+        touch-action: manipulation;
+    }
+    
+    /* 禁用双击缩放 */
+    * {
+        touch-action: manipulation;
+    }
+    
+    /* 优化动画性能，减少 GPU 负担 */
+    .impact-electro::before,
+    .impact-electro::after,
+    .impact-blood::before,
+    .impact-blood::after,
+    .impact-freeze::before,
+    .impact-freeze::after,
+    .impact-royal::before,
+    .impact-royal::after,
+    .impact-glitch::before,
+    .impact-glitch::after,
+    .impact-bloom::before,
+    .impact-bloom::after,
+    .impact-ink::before,
+    .impact-ink::after,
+    .impact-vibrate::before,
+    .impact-vibrate::after,
+    .impact-warm::before,
+    .impact-warm::after,
+    .impact-mist::before,
+    .impact-mist::after,
+    .impact-abyss::before,
+    .impact-abyss::after,
+    .impact-time::before,
+    .impact-time::after,
+    .impact-gravity::before,
+    .impact-gravity::after,
+    .impact-soul::before,
+    .impact-soul::after,
+    .impact-void::before,
+    .impact-void::after {
+        will-change: transform, opacity;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+    
+    /* 奖励动画优化 */
+    .reward-sparkle,
+    .reward-warmth,
+    .reward-blossom,
+    .reward-candy,
+    .reward-peach,
+    .reward-melt,
+    .reward-silent,
+    .reward-coronation,
+    .reward-pact,
+    .reward-sacred {
+        will-change: transform, box-shadow;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+}
+
+/* === Performance Optimization for Mobile === */
+@media (max-width: 480px) {
+    /* 使用硬件加速 */
+    .card {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+    
+    /* 减少复杂阴影计算 */
+    .card {
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    /* 简化渐变背景 */
+    .impact-electro,
+    .impact-blood,
+    .impact-freeze,
+    .impact-royal,
+    .impact-glitch,
+    .impact-bloom,
+    .impact-ink,
+    .impact-vibrate,
+    .impact-warm,
+    .impact-mist {
+        background-clip: padding-box;
+    }
+}
+
+/* === Device Performance Classes === */
+body.mobile-optimized .impact-electro::before,
+body.mobile-optimized .impact-electro::after,
+body.mobile-optimized .impact-blood::before,
+body.mobile-optimized .impact-blood::after,
+body.mobile-optimized .impact-abyss::before,
+body.mobile-optimized .impact-abyss::after,
+body.mobile-optimized .impact-void::before,
+body.mobile-optimized .impact-void::after {
+    /* 减少粒子效果 */
+    opacity: 0.5;
+}
+
+body.reduced-motion .impact-electro,
+body.reduced-motion .impact-glitch,
+body.reduced-motion .impact-vibrate,
+body.reduced-motion .impact-time {
+    /* 降低震动频率 */
+    animation-duration: 2s !important;
+}
+
+body.reduced-motion .reward-sparkle::before,
+body.reduced-motion .reward-blossom::before,
+body.reduced-motion .reward-candy::before,
+body.reduced-motion .reward-candy::after {
+    /* 减少 emoji 动画 */
+    animation: none;
+}
+
+/* === iOS Specific Optimizations === */
+body.ios-optimized {
+    /* iOS 字体渲染优化 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body.ios-optimized .card {
+    /* iOS 阴影优化 */
+    -webkit-box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+body.ios-legacy .impact-electro,
+body.ios-legacy .impact-blood,
+body.ios-legacy .impact-freeze,
+body.ios-legacy .impact-royal,
+body.ios-legacy .impact-glitch {
+    /* 老版本 iOS 简化动画 */
+    animation-duration: 3s !important;
+}
+
+body.ios-legacy .impact-electro::before,
+body.ios-legacy .impact-electro::after,
+body.ios-legacy .impact-blood::before,
+body.ios-legacy .impact-blood::after {
+    /* 禁用复杂粒子效果 */
+    display: none;
+}
+
+/* === iPhone 7/8 Specific === */
+@media (min-device-width: 375px) and (max-device-width: 375px) and (-webkit-min-device-pixel-ratio: 2) {
+    /* iPhone 7/8 专属优化 */
+    .result-visual {
+        height: 170px;
+    }
+    
+    .option-btn {
+        min-height: 50px;
+    }
+}
+
+/* === iPhone Plus/Max Specific === */
+@media (min-device-width: 414px) and (max-device-width: 414px) {
+    /* iPhone Plus/Max 专属优化 */
+    .result-visual {
+        height: 200px;
+    }
+    
+    .option-btn {
+        min-height: 52px;
+    }
+}
         min-height: 48px;
         touch-action: manipulation;
     }
@@ -849,7 +1271,8 @@ body.white-theme {
 @keyframes drain-siphon { 0% { filter: brightness(1); } 100% { filter: brightness(0.7) saturate(0.5); } }
 
 /* === 1.md 扩充视觉反馈库 === */
-/* 萝莉专属雷电效果 - 天罚·神雷审判 */
+
+/* ========== 萝莉专属雷电 - 天罚·神雷审判 ========== */
 .impact-electro { 
     animation: divine-thunder-judgment 1s linear infinite;
     position: relative;
@@ -943,7 +1366,6 @@ body.white-theme {
     }
 }
 
-/* 雷电风暴效果 */
 .impact-electro::before {
     content: '';
     position: absolute;
@@ -974,33 +1396,19 @@ body.white-theme {
 }
 
 @keyframes thunder-storm {
-    0% { 
-        transform: rotate(0deg) scale(1);
-    }
-    50% { 
-        transform: rotate(180deg) scale(1.5);
-    }
-    100% { 
-        transform: rotate(360deg) scale(1);
-    }
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.5); }
+    100% { transform: rotate(360deg) scale(1); }
 }
 
-/* 雷电闪烁背景 */
 .impact-electro::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background: radial-gradient(
         ellipse at center,
-        #ffffff 0%,
-        #ff0000 20%,
-        #00ff00 40%,
-        #0000ff 60%,
-        #ffff00 80%,
-        transparent 100%
+        #ffffff 0%, #ff0000 20%, #00ff00 40%,
+        #0000ff 60%, #ffff00 80%, transparent 100%
     );
     opacity: 0;
     animation: lightning-strobe 0.1s ease-in-out infinite;
@@ -1012,6 +1420,581 @@ body.white-theme {
     0%, 100% { opacity: 0; }
     10%, 30%, 50%, 70%, 90% { opacity: 0.9; }
     20%, 40%, 60%, 80% { opacity: 0.3; }
+}
+
+/* ========== 血色惩罚 - 鲜血献祭 ========== */
+.impact-blood {
+    animation: blood-sacrifice 0.8s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes blood-sacrifice {
+    0%, 100% {
+        box-shadow: inset 0 0 80px #8b0000, 0 0 50px #ff0000;
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1) contrast(1);
+        background: #8b000011;
+    }
+    25% {
+        box-shadow: inset 0 0 150px #ff0000, 0 0 100px #8b0000;
+        transform: scale(1.05) rotate(-2deg);
+        filter: brightness(1.5) contrast(1.3);
+        background: #ff000033;
+    }
+    50% {
+        box-shadow: inset 0 0 200px #8b0000, 0 0 150px #ff0000;
+        transform: scale(0.95) rotate(2deg);
+        filter: brightness(1.8) contrast(1.5) saturate(2);
+        background: #8b000055;
+    }
+    75% {
+        box-shadow: inset 0 0 150px #ff0000, 0 0 100px #8b0000;
+        transform: scale(1.08) rotate(-1deg);
+        filter: brightness(1.6) contrast(1.4);
+        background: #ff000044;
+    }
+}
+
+.impact-blood::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(
+        circle,
+        #ff000088 0%,
+        #8b000066 50%,
+        transparent 70%
+    );
+    opacity: 0.6;
+    animation: blood-pulse 0.8s ease-in-out infinite;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+}
+
+@keyframes blood-pulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.2); }
+}
+
+.impact-blood::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+        linear-gradient(45deg, 
+            transparent 0%, 
+            #ff000022 25%, 
+            transparent 50%, 
+            #8b000033 75%, 
+            transparent 100%
+        );
+    animation: blood-drip 2s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes blood-drip {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+}
+
+/* ========== 冰冻惩罚 - 绝对零度 ========== */
+.impact-freeze {
+    animation: absolute-zero 1.5s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes absolute-zero {
+    0%, 100% {
+        box-shadow: 0 0 50px #87ceeb, 0 0 100px #00ffff;
+        transform: scale(1);
+        filter: brightness(1) blur(0);
+        background: #f0f8ff;
+    }
+    50% {
+        box-shadow: 0 0 100px #00ffff, 0 0 200px #87ceeb;
+        transform: scale(1.02);
+        filter: brightness(1.3) blur(1px) saturate(0);
+        background: #e0ffff;
+    }
+}
+
+.impact-freeze::before {
+    content: '';
+    position: absolute;
+    top: -100%; left: -100%;
+    width: 300%; height: 300%;
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            #87ceeb33 10px,
+            #87ceeb33 20px
+        );
+    opacity: 0.5;
+    animation: ice-crystal 3s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes ice-crystal {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(50px, 50px) rotate(360deg); }
+}
+
+.impact-freeze::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(
+        circle at 20% 80%,
+        #ffffff88 0%,
+        #87ceeb66 30%,
+        transparent 60%
+    );
+    opacity: 0.4;
+    animation: frost-bite 2s ease-in-out infinite;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
+
+@keyframes frost-bite {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.6; }
+}
+
+/* ========== 皇家惩罚 - 王权制裁 ========== */
+.impact-royal {
+    animation: royal-sanction 1.2s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid #ffd700;
+}
+
+@keyframes royal-sanction {
+    0%, 100% {
+        box-shadow: 0 0 30px #ffd700, 0 0 60px #ffec8b, inset 0 0 30px #ffd700;
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1);
+        background: linear-gradient(135deg, #fff 0%, #fff8dc 100%);
+    }
+    50% {
+        box-shadow: 0 0 60px #ffd700, 0 0 120px #ffec8b, inset 0 0 60px #ffd700;
+        transform: scale(1.05) rotate(1deg);
+        filter: brightness(1.4);
+        background: linear-gradient(135deg, #fff8dc 0%, #ffd700 100%);
+    }
+}
+
+.impact-royal::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: 
+        repeating-conic-gradient(
+            from 0deg,
+            #ffd70044 0deg 30deg,
+            transparent 30deg 60deg
+        );
+    opacity: 0.6;
+    animation: royal-aura 2s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes royal-aura {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.impact-royal::after {
+    content: '👑';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 100px;
+    opacity: 0.3;
+    animation: crown-appear 1.2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes crown-appear {
+    0%, 100% { opacity: 0.1; transform: translate(-50%, -50%) scale(0.8); }
+    50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+/* ========== 故障惩罚 - 系统崩溃 ========== */
+.impact-glitch {
+    animation: system-crash 0.3s linear infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes system-crash {
+    0% {
+        transform: translate(0) scale(1);
+        filter: hue-rotate(0deg) contrast(1);
+        clip-path: inset(0 0 0 0);
+    }
+    25% {
+        transform: translate(-5px, 5px) scale(1.02);
+        filter: hue-rotate(90deg) contrast(1.5);
+        clip-path: inset(10% 0 80% 0);
+    }
+    50% {
+        transform: translate(5px, -5px) scale(0.98);
+        filter: hue-rotate(180deg) contrast(2);
+        clip-path: inset(80% 0 10% 0);
+    }
+    75% {
+        transform: translate(-5px, -5px) scale(1.01);
+        filter: hue-rotate(270deg) contrast(1.8);
+        clip-path: inset(50% 0 50% 0);
+    }
+    100% {
+        transform: translate(5px, 5px) scale(1);
+        filter: hue-rotate(360deg) contrast(1);
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+.impact-glitch::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+        linear-gradient(
+            to bottom,
+            transparent 50%,
+            #ff00ff33 50%
+        );
+    background-size: 100% 4px;
+    opacity: 0.5;
+    animation: glitch-lines 0.3s steps(2) infinite;
+    pointer-events: none;
+}
+
+@keyframes glitch-lines {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-4px); }
+}
+
+.impact-glitch::after {
+    content: 'ERROR';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    font-weight: bold;
+    color: #ff00ff;
+    text-shadow: 2px 0 #00ffff, -2px 0 #ffff00;
+    opacity: 0.7;
+    animation: error-text 0.3s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes error-text {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* ========== 绽放惩罚 - 花海淹没 ========== */
+.impact-bloom {
+    animation: flower-burial 2s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes flower-burial {
+    0%, 100% {
+        box-shadow: 0 0 30px #ffb6c1, 0 0 60px #ffc0cb;
+        transform: scale(1) translateY(0);
+        filter: brightness(1);
+        background: linear-gradient(180deg, #fff0f5 0%, #fff 100%);
+    }
+    50% {
+        box-shadow: 0 0 60px #ffb6c1, 0 0 120px #ffc0cb;
+        transform: scale(1.05) translateY(-10px);
+        filter: brightness(1.3);
+        background: linear-gradient(180deg, #ffc0cb 0%, #ffb6c1 100%);
+    }
+}
+
+.impact-bloom::before {
+    content: '🌸🌺🌹🌻🌷🌼💐';
+    position: absolute;
+    top: -100%; left: 0;
+    width: 100%;
+    font-size: 50px;
+    opacity: 0.6;
+    animation: flower-rain 3s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes flower-rain {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(500px) rotate(360deg); }
+}
+
+.impact-bloom::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(
+        circle,
+        #ffb6c188 0%,
+        #ffc0cb66 50%,
+        transparent 70%
+    );
+    opacity: 0.4;
+    animation: bloom-pulse 2s ease-in-out infinite;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
+
+@keyframes bloom-pulse {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.3); }
+}
+
+/* ========== 墨水惩罚 - 文字狱 ========== */
+.impact-ink {
+    animation: literary-inquisition 1.5s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+    border-left: 20px solid #000;
+}
+
+@keyframes literary-inquisition {
+    0%, 100% {
+        box-shadow: 0 0 20px #000, inset 0 0 30px #f0f0f0;
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1) contrast(1);
+        background: #fafafa;
+    }
+    50% {
+        box-shadow: 0 0 40px #000, inset 0 0 60px #e0e0e0;
+        transform: scale(1.03) rotate(-1deg);
+        filter: brightness(0.9) contrast(1.2);
+        background: #f0f0f0;
+    }
+}
+
+.impact-ink::before {
+    content: '诗云子曰之乎者也';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    font-size: 20px;
+    color: #00000066;
+    writing-mode: vertical-rl;
+    opacity: 0.5;
+    animation: text-scroll 5s linear infinite;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+@keyframes text-scroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+.impact-ink::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 50px,
+            #00000022 50px,
+            #00000022 51px
+        );
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* ========== 震动惩罚 - 地震模式 ========== */
+.impact-vibrate {
+    animation: earthquake-mode 0.2s linear infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes earthquake-mode {
+    0% { transform: translate(0, 0) scale(1); }
+    10% { transform: translate(-8px, 8px) scale(1.05); }
+    20% { transform: translate(8px, -8px) scale(0.95); }
+    30% { transform: translate(-8px, -8px) scale(1.08); }
+    40% { transform: translate(8px, 8px) scale(0.92); }
+    50% { transform: translate(-8px, 8px) scale(1.1); }
+    60% { transform: translate(8px, -8px) scale(0.9); }
+    70% { transform: translate(-8px, -8px) scale(1.12); }
+    80% { transform: translate(8px, 8px) scale(0.88); }
+    90% { transform: translate(-8px, 8px) scale(1.15); }
+    100% { transform: translate(8px, -8px) scale(0.85); }
+}
+
+.impact-vibrate::before {
+    content: '⚡💥🔥✨⚡';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    font-size: 60px;
+    opacity: 0.5;
+    animation: explosion-spin 0.5s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes explosion-spin {
+    0% { transform: rotate(0deg) scale(1); opacity: 0.3; }
+    50% { transform: rotate(180deg) scale(1.5); opacity: 0.8; }
+    100% { transform: rotate(360deg) scale(1); opacity: 0.3; }
+}
+
+.impact-vibrate::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(
+        circle,
+        #ff634788 0%,
+        #ff450066 50%,
+        transparent 70%
+    );
+    opacity: 0.4;
+    animation: shake-flash 0.2s ease-in-out infinite;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
+
+@keyframes shake-flash {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.6; }
+}
+
+/* ========== 温暖惩罚 - 温柔乡 ========== */
+.impact-warm {
+    animation: gentle-embrace 2s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes gentle-embrace {
+    0%, 100% {
+        box-shadow: 0 0 30px #ffe4b5, 0 0 60px #ffd700;
+        transform: scale(1);
+        filter: brightness(1);
+        background: linear-gradient(135deg, #fff8dc 0%, #fff 100%);
+    }
+    50% {
+        box-shadow: 0 0 60px #ffe4b5, 0 0 120px #ffd700;
+        transform: scale(1.03);
+        filter: brightness(1.2);
+        background: linear-gradient(135deg, #ffd700 0%, #fff8dc 100%);
+    }
+}
+
+.impact-warm::before {
+    content: '💕💖💗💞💕';
+    position: absolute;
+    top: -100%; left: 0;
+    width: 100%;
+    font-size: 40px;
+    opacity: 0.6;
+    animation: heart-float 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes heart-float {
+    0% { transform: translateY(0); opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { transform: translateY(-200px); opacity: 0; }
+}
+
+.impact-warm::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(
+        ellipse at center,
+        #ffd70044 0%,
+        #ffe4b566 50%,
+        transparent 70%
+    );
+    opacity: 0.5;
+    animation: warm-glow 2s ease-in-out infinite;
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+}
+
+@keyframes warm-glow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+}
+
+/* ========== 迷雾惩罚 - 幻境迷宫 ========== */
+.impact-mist {
+    animation: illusion-maze 3s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes illusion-maze {
+    0%, 100% {
+        box-shadow: 0 0 30px #d8bfd8, 0 0 60px #dda0dd;
+        transform: scale(1);
+        filter: brightness(1) blur(0);
+        background: linear-gradient(180deg, #f5f5f5 0%, #fff 100%);
+    }
+    50% {
+        box-shadow: 0 0 60px #d8bfd8, 0 0 120px #dda0dd;
+        transform: scale(1.02);
+        filter: brightness(0.9) blur(2px);
+        background: linear-gradient(180deg, #e6e6fa 0%, #d8bfd8 100%);
+    }
+}
+
+.impact-mist::before {
+    content: '';
+    position: absolute;
+    top: -100%; left: -100%;
+    width: 300%; height: 300%;
+    background: 
+        repeating-radial-gradient(
+            circle,
+            #d8bfd844 0%,
+            transparent 20%,
+            #dda0dd66 40%,
+            transparent 60%
+        );
+    opacity: 0.4;
+    animation: mist-spin 5s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes mist-spin {
+    0% { transform: rotate(0deg) scale(1); }
+    100% { transform: rotate(360deg) scale(1.2); }
+}
+
+.impact-mist::after {
+    content: '🔮✨💫';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    opacity: 0.3;
+    animation: mystic-appear 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes mystic-appear {
+    0%, 100% { opacity: 0.1; transform: translate(-50%, -50%) scale(0.8); }
+    50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.2); }
 }
 
 .impact-blood { animation: pulse-blood 0.6s infinite; box-shadow: inset 0 0 100px #ff000066; }
@@ -1075,3 +2058,660 @@ body.white-theme {
 
 .impact-mist { filter: opacity(0.8) grayscale(0.3); animation: mist-flow 5s infinite; }
 @keyframes mist-flow { 50% { filter: opacity(0.5) blur(1px); } }
+
+/* ========== 新增惩罚动画效果 ========== */
+
+/* 1. 黑暗深渊惩罚 */
+.impact-abyss {
+    animation: abyss-darkness 2s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes abyss-darkness {
+    0%, 100% {
+        background: #000000;
+        box-shadow: inset 0 0 100px #000000, 0 0 50px #4b0082;
+        transform: scale(1);
+    }
+    50% {
+        background: #0a0010;
+        box-shadow: inset 0 0 200px #000000, 0 0 100px #8b00ff;
+        transform: scale(1.05);
+    }
+}
+
+.impact-abyss::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, transparent 30%, #000000 70%);
+    animation: abyss-rotate 3s linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes abyss-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.impact-abyss::after {
+    content: '👁️🕳️';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 100px;
+    opacity: 0;
+    animation: abyss-eye 2s ease-in-out infinite;
+}
+
+@keyframes abyss-eye {
+    0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    50% { opacity: 0.4; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+/* 2. 时空扭曲惩罚 */
+.impact-time {
+    animation: time-warp 1.5s ease-in-out infinite;
+    position: relative;
+}
+
+@keyframes time-warp {
+    0% {
+        transform: scale(1) rotate(0deg);
+        filter: hue-rotate(0deg);
+    }
+    25% {
+        transform: scale(1.1) rotate(5deg);
+        filter: hue-rotate(90deg);
+    }
+    50% {
+        transform: scale(0.9) rotate(-5deg);
+        filter: hue-rotate(180deg);
+    }
+    75% {
+        transform: scale(1.05) rotate(3deg);
+        filter: hue-rotate(270deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        filter: hue-rotate(360deg);
+    }
+}
+
+.impact-time::before {
+    content: '⏰⌛';
+    position: absolute;
+    top: 10%; left: 10%;
+    font-size: 40px;
+    animation: time-float 1.5s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+.impact-time::after {
+    content: '⏳⏱️';
+    position: absolute;
+    bottom: 10%; right: 10%;
+    font-size: 40px;
+    animation: time-float 1.5s ease-in-out infinite reverse;
+    opacity: 0.6;
+}
+
+@keyframes time-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+/* 3. 重力崩溃惩罚 */
+.impact-gravity {
+    animation: gravity-collapse 0.8s ease-in-out infinite;
+    position: relative;
+}
+
+@keyframes gravity-collapse {
+    0%, 100% {
+        transform: scaleY(1);
+        box-shadow: 0 0 0 transparent;
+    }
+    50% {
+        transform: scaleY(0.7) scaleX(1.1);
+        box-shadow: 0 0 100px #ff0000, 0 0 200px #ff4500;
+    }
+}
+
+.impact-gravity::before {
+    content: '';
+    position: absolute;
+    top: -100%; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to bottom, #ff000044, transparent);
+    animation: gravity-fall 0.8s ease-in infinite;
+}
+
+@keyframes gravity-fall {
+    0% { top: -100%; opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+.impact-gravity::after {
+    content: '💥⬇️';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    opacity: 0.5;
+    animation: gravity-crush 0.8s ease-in-out infinite;
+}
+
+@keyframes gravity-crush {
+    0%, 100% { transform: translate(-50%, -100%) scale(0.5); opacity: 0; }
+    50% { transform: translate(-50%, 0) scale(1.2); opacity: 0.8; }
+}
+
+/* 4. 灵魂燃烧惩罚 */
+.impact-soul {
+    animation: soul-burn 1.2s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes soul-burn {
+    0%, 100% {
+        filter: brightness(1) contrast(1);
+        box-shadow: 0 0 50px #ff4500;
+    }
+    50% {
+        filter: brightness(1.5) contrast(1.3);
+        box-shadow: 0 0 150px #ff6347, 0 0 300px #ffa500;
+    }
+}
+
+.impact-soul::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 50% 50%, #ff450033, transparent 70%);
+    animation: soul-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes soul-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.3); opacity: 0.8; }
+}
+
+.impact-soul::after {
+    content: '🔥💀';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    opacity: 0.4;
+    animation: soul-flame 1.2s ease-in-out infinite;
+}
+
+@keyframes soul-flame {
+    0%, 100% { transform: translate(-50%, -50%) scale(0.8) rotate(-10deg); }
+    50% { transform: translate(-50%, -50%) scale(1.2) rotate(10deg); }
+}
+
+/* 5. 虚空吞噬惩罚 */
+.impact-void {
+    animation: void-devour 2.5s linear infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes void-devour {
+    0% {
+        background: #000000;
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        background: #0a000a;
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+    100% {
+        background: #000000;
+        transform: scale(0.9);
+        opacity: 0.5;
+    }
+}
+
+.impact-void::before {
+    content: '';
+    position: absolute;
+    top: -200%; left: -200%;
+    width: 500%; height: 500%;
+    background: conic-gradient(from 0deg, #000000, #1a001a, #000000);
+    animation: void-spin 2.5s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes void-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.impact-void::after {
+    content: '🌑🕳️👻';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 70px;
+    opacity: 0;
+    animation: void-appear 2.5s linear infinite;
+}
+
+@keyframes void-appear {
+    0%, 90% { opacity: 0; }
+    95% { opacity: 0.6; }
+    100% { opacity: 0; }
+}
+
+/* ========== 新增奖励动画效果 ========== */
+
+/* 1. 星光闪耀奖励 */
+.reward-sparkle {
+    animation: sparkle-glow 1.5s ease-out;
+    position: relative;
+}
+
+@keyframes sparkle-glow {
+    0% {
+        box-shadow: 0 0 20px #ffd700;
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 60px #ffec8b, 0 0 100px #ffd700;
+        transform: scale(1.05);
+    }
+    100% {
+        box-shadow: 0 0 20px #ffd700;
+        transform: scale(1);
+    }
+}
+
+.reward-sparkle::before {
+    content: '✨⭐🌟';
+    position: absolute;
+    top: -30px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 40px;
+    animation: sparkle-rise 1.5s ease-out;
+}
+
+@keyframes sparkle-rise {
+    0% {
+        transform: translateX(-50%) translateY(0) scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) translateY(-50px) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* 2. 温暖光芒奖励 */
+.reward-warmth {
+    animation: warmth-ambient 2s ease-out;
+    position: relative;
+}
+
+@keyframes warmth-ambient {
+    0% {
+        background: #fff9e6;
+        box-shadow: 0 0 30px #ffe4b5;
+    }
+    50% {
+        background: #fff;
+        box-shadow: 0 0 80px #ffd700;
+    }
+    100% {
+        background: #fff9e6;
+        box-shadow: 0 0 30px #ffe4b5;
+    }
+}
+
+.reward-warmth::after {
+    content: '💛💕☀️';
+    position: absolute;
+    bottom: -30px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 35px;
+    animation: warmth-float 2s ease-out;
+}
+
+@keyframes warmth-float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-20px); }
+}
+
+/* 3. 花朵绽放奖励 */
+.reward-blossom {
+    animation: blossom-bloom 2s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes blossom-bloom {
+    0% {
+        background: #fff0f5;
+        transform: scale(1);
+    }
+    50% {
+        background: #ffb6c1;
+        transform: scale(1.08);
+    }
+    100% {
+        background: #fff0f5;
+        transform: scale(1);
+    }
+}
+
+.reward-blossom::before {
+    content: '🌸🌺🌹';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    opacity: 0;
+    animation: blossom-expand 2s ease-out;
+}
+
+@keyframes blossom-expand {
+    0% {
+        transform: translate(-50%, -50%) scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* 4. 糖果甜蜜奖励 */
+.reward-candy {
+    animation: candy-sweet 1.8s ease-in-out infinite;
+    position: relative;
+}
+
+@keyframes candy-sweet {
+    0%, 100% {
+        background: linear-gradient(135deg, #ffc0cb 0%, #fff 100%);
+        transform: rotate(-2deg);
+    }
+    50% {
+        background: linear-gradient(135deg, #ffb6c1 0%, #fff0f5 100%);
+        transform: rotate(2deg);
+    }
+}
+
+.reward-candy::before {
+    content: '🍬🍭🍫';
+    position: absolute;
+    top: 10px; right: 10px;
+    font-size: 30px;
+    animation: candy-bounce 1.8s ease-in-out infinite;
+}
+
+.reward-candy::after {
+    content: '🧁🍰🎂';
+    position: absolute;
+    bottom: 10px; left: 10px;
+    font-size: 30px;
+    animation: candy-bounce 1.8s ease-in-out infinite reverse;
+}
+
+@keyframes candy-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* 5. 桃子柔软奖励 */
+.reward-peach {
+    animation: peach-soft 2s ease-in-out infinite;
+    position: relative;
+}
+
+@keyframes peach-soft {
+    0%, 100% {
+        background: #ffe4e1;
+        box-shadow: 0 0 20px #ffc0cb;
+    }
+    50% {
+        background: #ffd1dc;
+        box-shadow: 0 0 50px #ffb6c1;
+    }
+}
+
+.reward-peach::after {
+    content: '🍑💗';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    opacity: 0.5;
+    animation: peach-pulse 2s ease-in-out infinite;
+}
+
+@keyframes peach-pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+    50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.7; }
+}
+
+/* 6. 冰山融化奖励 */
+.reward-melt {
+    animation: melt-thaw 2.5s ease-out;
+    position: relative;
+}
+
+@keyframes melt-thaw {
+    0% {
+        filter: blur(2px) brightness(1.2);
+        background: #f0f8ff;
+    }
+    50% {
+        filter: blur(0) brightness(1);
+        background: #e0ffff;
+    }
+    100% {
+        filter: blur(0) brightness(1);
+        background: #fff;
+    }
+}
+
+.reward-melt::before {
+    content: '💧💦';
+    position: absolute;
+    top: 20px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 35px;
+    animation: melt-drip 2.5s ease-out;
+}
+
+@keyframes melt-drip {
+    0% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateX(-50%) translateY(100px);
+        opacity: 0;
+    }
+}
+
+/* 7. 无声告白奖励 */
+.reward-silent {
+    animation: silent-quiet 2s ease-out;
+    position: relative;
+}
+
+@keyframes silent-quiet {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.03);
+    }
+}
+
+.reward-silent::after {
+    content: '💓💌';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 45px;
+    opacity: 0;
+    animation: silent-beat 2s ease-out;
+}
+
+@keyframes silent-beat {
+    0%, 100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+/* 8. 女王加冕奖励 */
+.reward-coronation {
+    animation: coronation-crown 2s ease-out;
+    position: relative;
+    border: 4px solid #ffd700;
+}
+
+@keyframes coronation-crown {
+    0%, 100% {
+        box-shadow: 0 0 30px #ffd700;
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 100px #ffd700, 0 0 150px #ffec8b;
+        transform: scale(1.05);
+    }
+}
+
+.reward-coronation::before {
+    content: '👑💎';
+    position: absolute;
+    top: -40px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 60px;
+    animation: coronation-descend 2s ease-out;
+}
+
+@keyframes coronation-descend {
+    0% {
+        transform: translateX(-50%) translateY(-100px);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 0.8;
+    }
+}
+
+/* 9. 魔女契约奖励 */
+.reward-pact {
+    animation: pact-dark 2.5s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes pact-dark {
+    0%, 100% {
+        background: #1a001a;
+        box-shadow: 0 0 40px #8b00ff;
+    }
+    50% {
+        background: #2d002d;
+        box-shadow: 0 0 80px #9400d3;
+    }
+}
+
+.reward-pact::before {
+    content: '🔮🌙';
+    position: absolute;
+    top: 15px; left: 15px;
+    font-size: 35px;
+    animation: pact-glow 2.5s ease-in-out infinite;
+}
+
+.reward-pact::after {
+    content: '✨🦇';
+    position: absolute;
+    bottom: 15px; right: 15px;
+    font-size: 35px;
+    animation: pact-glow 2.5s ease-in-out infinite reverse;
+}
+
+@keyframes pact-glow {
+    0%, 100% { opacity: 0.4; filter: brightness(1); }
+    50% { opacity: 0.8; filter: brightness(1.5); }
+}
+
+/* 10. 仙女神圣奖励 */
+.reward-sacred {
+    animation: sacred-holy 3s ease-in-out infinite;
+    position: relative;
+}
+
+@keyframes sacred-holy {
+    0%, 100% {
+        background: radial-gradient(circle, #f8f8ff 0%, #e6e6fa 100%);
+        box-shadow: 0 0 50px #d8bfd8;
+    }
+    50% {
+        background: radial-gradient(circle, #fff 0%, #f0f8ff 100%);
+        box-shadow: 0 0 100px #e6e6fa, 0 0 150px #d8bfd8;
+    }
+}
+
+.reward-sacred::before {
+    content: '🌙⭐🕊️';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 55px;
+    opacity: 0.6;
+    animation: sacred-rotate 3s ease-in-out infinite;
+}
+
+@keyframes sacred-rotate {
+    0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+    50% { transform: translate(-50%, -50%) rotate(180deg); }
+}
+
+.reward-sacred::after {
+    content: '💫👼';
+    position: absolute;
+    bottom: 10px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 40px;
+    animation: sacred-float 3s ease-in-out infinite;
+}
+
+@keyframes sacred-float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-15px); }
+}
