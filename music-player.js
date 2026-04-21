@@ -30,11 +30,12 @@ function initAPlayer() {
 
     // 自动播放策略：用户首次交互时播放
     const tryAutoPlay = () => {
-        ap.play().then(() => {
+        try {
+            ap.play();
             console.log('🎵 APlayer 自动播放成功！');
-        }).catch(error => {
+        } catch (error) {
             console.log('⏸ 自动播放被阻止，等待用户交互');
-        });
+        }
     };
 
     // 页面加载时立即尝试
@@ -46,9 +47,12 @@ function initAPlayer() {
 
     const onUserInteraction = () => {
         if (!hasUserInteracted && ap.audio.paused) {
-            ap.play().then(() => {
+            try {
+                ap.play();
                 console.log('🎵 用户交互后音乐开始播放');
-            });
+            } catch (error) {
+                console.log('⏸ 播放失败:', error);
+            }
             hasUserInteracted = true;
             
             // 移除所有监听器
@@ -60,6 +64,15 @@ function initAPlayer() {
 
     userInteractionEvents.forEach(event => {
         document.addEventListener(event, onUserInteraction, { passive: true, capture: true });
+    });
+
+    // 监听播放事件
+    ap.on('play', () => {
+        console.log('▶️ 音乐开始播放');
+    });
+
+    ap.on('pause', () => {
+        console.log('⏸ 音乐暂停');
     });
 
     // 标签页可见性变化
