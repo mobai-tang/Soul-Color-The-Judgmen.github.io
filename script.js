@@ -139,6 +139,7 @@ const questions = [
 // 游戏状态
 let currentQuestion = 0;
 let userScores = {};
+let shuffledQuestions = [];
 
 // 初始化分数
 function initScores() {
@@ -146,6 +147,22 @@ function initScores() {
     Object.keys(traits).forEach(key => {
         userScores[key] = 0;
     });
+}
+
+// Fisher-Yates 洗牌算法 - 高随机性
+function shuffleArray(array) {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+}
+
+// 随机抽取题目
+function getRandomQuestions(count) {
+    const shuffled = shuffleArray(questions);
+    return shuffled.slice(0, Math.min(count, questions.length));
 }
 
 // 视图切换函数
@@ -158,13 +175,15 @@ function switchView(hideView, showView) {
 function startQuiz() {
     currentQuestion = 0;
     initScores();
+    // 随机抽取题目（如果题目数量超过 10 道，则随机抽取 10 道）
+    shuffledQuestions = getRandomQuestions(10);
     switchView('view-intro', 'view-quiz');
     renderQuestion();
 }
 
 // 渲染题目
 function renderQuestion() {
-    const q = questions[currentQuestion];
+    const q = shuffledQuestions[currentQuestion];
     document.getElementById('question-counter').textContent = String(currentQuestion + 1).padStart(2, '0');
     document.getElementById('question-text').textContent = q.text;
     
@@ -179,7 +198,7 @@ function renderQuestion() {
         container.appendChild(btn);
     });
     
-    const progress = ((currentQuestion + 1) / questions.length) * 100;
+    const progress = ((currentQuestion + 1) / shuffledQuestions.length) * 100;
     document.getElementById('progress-fill').style.width = `${progress}%`;
 }
 
@@ -190,7 +209,7 @@ function selectOption(option) {
     });
     
     currentQuestion++;
-    if (currentQuestion < questions.length) {
+    if (currentQuestion < shuffledQuestions.length) {
         renderQuestion();
     } else {
         showResult();
