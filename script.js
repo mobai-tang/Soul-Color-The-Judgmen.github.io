@@ -447,8 +447,8 @@ function switchView(hideView, showView) {
 function startQuiz() {
     currentQuestion = 0;
     initScores();
-    // 从 40 道题目中随机抽取 10 道
-    shuffledQuestions = getRandomQuestions(10);
+    // 从 40 道题目中随机抽取 40 道（全部题目，随机顺序）
+    shuffledQuestions = getRandomQuestions(40);
     switchView('view-intro', 'view-quiz');
     renderQuestion();
 }
