@@ -89,6 +89,75 @@ body.white-theme {
     margin: 30px auto;
 }
 
+/* === 护眼提示 === */
+.eye-care-notice {
+    margin-top: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.eye-care-notice .eye-icon {
+    font-size: 2rem;
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.eye-care-notice > p {
+    font-size: 0.9rem;
+    color: #495057;
+    text-align: center;
+    font-weight: 600;
+    margin: 0 0 15px 0;
+    line-height: 1.5;
+}
+
+.notice-tips {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notice-tips li {
+    font-size: 0.8rem;
+    color: #6c757d;
+    padding: 6px 0;
+    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+}
+
+.notice-tips li::before {
+    content: '✓';
+    color: #28a745;
+    font-weight: bold;
+    margin-right: 8px;
+    font-size: 0.9rem;
+}
+
+/* 移动端护眼提示优化 */
+@media (max-width: 480px) {
+    .eye-care-notice {
+        margin-top: 20px;
+        padding: 15px;
+    }
+    
+    .eye-care-notice .eye-icon {
+        font-size: 1.8rem;
+    }
+    
+    .eye-care-notice > p {
+        font-size: 0.85rem;
+    }
+    
+    .notice-tips li {
+        font-size: 0.75rem;
+    }
+}
+
 /* === Buttons === */
 .btn-primary {
     background: #000;
