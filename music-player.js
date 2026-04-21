@@ -199,22 +199,51 @@ function initBackgroundMusic() {
     // 创建 UI
     createMusicPlayerUI(bgMusicPlayer);
     
-    // 页面加载完成后立即尝试播放
-    window.addEventListener('load', () => {
-        // 尝试自动播放
-        bgMusicPlayer.play().catch(error => {
-            console.log('自动播放失败，等待用户交互:', error);
-            // 如果自动播放失败，仍然保留点击播放的后备方案
-            let hasUserInteracted = false;
-            const autoPlayHandler = () => {
-                if (!hasUserInteracted && !bgMusicPlayer.isPlaying) {
-                    bgMusicPlayer.play();
-                    hasUserInteracted = true;
-                    document.removeEventListener('click', autoPlayHandler);
-                }
-            };
-            document.addEventListener('click', autoPlayHandler);
+    // 立即尝试播放（不等待 load 事件）
+    const tryAutoPlay = () => {
+        bgMusicPlayer.play().then(() => {
+            console.log('🎵 音乐自动播放成功！');
+        }).catch(error => {
+            console.log('⏸ 自动播放被浏览器阻止，等待用户交互');
         });
+    };
+    
+    // 策略 1: DOMContentLoaded 时立即尝试
+    tryAutoPlay();
+    
+    // 策略 2: window load 时再次尝试
+    window.addEventListener('load', () => {
+        setTimeout(tryAutoPlay, 100);
+    });
+    
+    // 策略 3: 用户任何交互时立即播放
+    const userInteractionEvents = ['click', 'touchstart', 'keydown', 'scroll', 'mousemove'];
+    let hasUserInteracted = false;
+    
+    const onUserInteraction = () => {
+        if (!hasUserInteracted && !bgMusicPlayer.isPlaying) {
+            bgMusicPlayer.play().then(() => {
+                console.log('🎵 用户交互后音乐开始播放');
+            });
+            hasUserInteracted = true;
+            
+            // 移除所有监听器
+            userInteractionEvents.forEach(event => {
+                document.removeEventListener(event, onUserInteraction);
+            });
+        }
+    };
+    
+    // 添加所有交互事件的监听
+    userInteractionEvents.forEach(event => {
+        document.addEventListener(event, onUserInteraction, { passive: true, capture: true });
+    });
+    
+    // 策略 4: 可见性改变时尝试（用户切换回标签页）
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && !bgMusicPlayer.isPlaying) {
+            tryAutoPlay();
+        }
     });
     
     return bgMusicPlayer;
