@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>灵魂色相 - 性格原型审判</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="white-theme">
+    <div id="app">
+        <div class="bg-decoration"></div>
+
+        <div id="view-intro" class="view active">
+            <div class="card intro-card">
+                <h1 class="title">Character Type Indicator</h1>
+                <p class="subtitle">深度潜意识映射：剥开你的文明伪装</p>
+                <div class="divider"></div>
+                <button class="btn-primary" id="btn-start">开始深层审判</button>
+            </div>
+        </div>
+
+        <div id="view-quiz" class="view">
+            <div class="card quiz-card">
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-fill"></div>
+                </div>
+                <div class="quiz-header">
+                    <span id="question-counter">01</span>
+                    <h2 id="question-text"></h2>
+                </div>
+                <div class="options-grid" id="options-container"></div>
+            </div>
+        </div>
+
+        <div id="view-result" class="view">
+            <div class="card result-card" id="main-result-card">
+                <div class="status-tag" id="status-tag">ANALYSIS COMPLETE</div>
+                <div class="result-content">
+                    <h3 class="result-label">你喜欢的女孩类型</h3>
+                    <h2 class="result-name" id="result-name"></h2>
+                    <div class="result-visual" id="result-img-placeholder">
+                        <img id="result-image" src="" alt="AI 生成画像" style="width:100%;height:100%;object-fit:cover;display:none;" />
+                        <div class="img-tip" id="img-tip">AI 画像生成中...</div>
+                    </div>
+                    <p class="result-desc" id="result-desc"></p>
+                    <div class="quote-box">
+                        <p id="result-ending"></p>
+                    </div>
+                </div>
+                <button class="btn-secondary" id="btn-restart">重启审判</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="punish-overlay" class="punish-overlay">
+        <div class="lightning"></div>
+        <div class="warning-text">⚡️ 警告：检测到违规灵魂 ⚡️<br>正在执行正义电击...</div>
+    </div>
+
+    <div id="reward-overlay" class="reward-overlay">
+        <div class="confetti"></div>
+        <div class="reward-text">灵魂契合成功</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
