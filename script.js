@@ -493,16 +493,40 @@ function showResult() {
     const sorted = Object.entries(userScores).sort((a, b) => b[1] - a[1]);
     const winnerId = sorted[0][0];
     const persona = traits[winnerId];
+    const score = sorted[0][1];
     
-    setTimeout(() => {
-        document.getElementById('result-name').textContent = persona.name;
-        document.getElementById('result-desc').textContent = persona.description;
-        document.getElementById('result-ending').textContent = persona.ending;
-        applyImpactByArchetype(winnerId);
-        loadImageByArchetype(winnerId);
-    }, 500);
+    // 先显示结果内容，不立即应用动画
+    document.getElementById('result-name').textContent = persona.name;
+    document.getElementById('result-desc').textContent = persona.description;
+    document.getElementById('result-ending').textContent = persona.ending;
     
+    // 加载图片
+    loadImageByArchetype(winnerId);
+    
+    // 切换到结果页面
     switchView('view-quiz', 'view-result');
+    
+    // 显示奖惩准备提示
+    const warningEl = document.getElementById('impact-warning');
+    const countdownFill = document.getElementById('countdown-fill');
+    
+    if (warningEl) {
+        warningEl.style.display = 'block';
+        // 重置动画
+        countdownFill.style.animation = 'none';
+        countdownFill.offsetHeight; // 触发重绘
+        countdownFill.style.animation = null; // 恢复动画
+    }
+    
+    // 延迟 2 秒后应用奖惩动画，让玩家有时间看清结果
+    setTimeout(() => {
+        // 隐藏提示
+        if (warningEl) {
+            warningEl.style.display = 'none';
+        }
+        // 应用奖惩效果
+        applyImpactByArchetype(winnerId, score);
+    }, 2000);
 }
 
 // 角色图片映射
